@@ -1,0 +1,12 @@
+syntax = "proto3";
+package card_wallet_app.brands;
+
+message Brand {
+    string id = 1;
+    string name = 2;
+    repeated string countries = 3;
+    repeated string search_terms = 4;
+    int32 last_modified = 5;
+    optional string url = 6;
+}
+message Brands { repeated Brand brands = 1; }
