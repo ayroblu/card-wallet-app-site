@@ -31,11 +31,15 @@ export interface Brand {
      */
     searchTerms: string[];
     /**
-     * @generated from protobuf field: int32 last_modified = 5
+     * @generated from protobuf field: string colour = 5
+     */
+    colour: string;
+    /**
+     * @generated from protobuf field: int32 last_modified = 6
      */
     lastModified: number;
     /**
-     * @generated from protobuf field: optional string url = 6
+     * @generated from protobuf field: optional string url = 7
      */
     url?: string;
 }
@@ -56,8 +60,9 @@ class Brand$Type extends MessageType<Brand> {
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "countries", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "search_terms", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "last_modified", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 6, name: "url", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+            { no: 5, name: "colour", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "last_modified", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 7, name: "url", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
         ]);
     }
     create(value?: PartialMessage<Brand>): Brand {
@@ -66,6 +71,7 @@ class Brand$Type extends MessageType<Brand> {
         message.name = "";
         message.countries = [];
         message.searchTerms = [];
+        message.colour = "";
         message.lastModified = 0;
         if (value !== undefined)
             reflectionMergePartial<Brand>(this, message, value);
@@ -88,10 +94,13 @@ class Brand$Type extends MessageType<Brand> {
                 case /* repeated string search_terms */ 4:
                     message.searchTerms.push(reader.string());
                     break;
-                case /* int32 last_modified */ 5:
+                case /* string colour */ 5:
+                    message.colour = reader.string();
+                    break;
+                case /* int32 last_modified */ 6:
                     message.lastModified = reader.int32();
                     break;
-                case /* optional string url */ 6:
+                case /* optional string url */ 7:
                     message.url = reader.string();
                     break;
                 default:
@@ -118,12 +127,15 @@ class Brand$Type extends MessageType<Brand> {
         /* repeated string search_terms = 4; */
         for (let i = 0; i < message.searchTerms.length; i++)
             writer.tag(4, WireType.LengthDelimited).string(message.searchTerms[i]);
-        /* int32 last_modified = 5; */
+        /* string colour = 5; */
+        if (message.colour !== "")
+            writer.tag(5, WireType.LengthDelimited).string(message.colour);
+        /* int32 last_modified = 6; */
         if (message.lastModified !== 0)
-            writer.tag(5, WireType.Varint).int32(message.lastModified);
-        /* optional string url = 6; */
+            writer.tag(6, WireType.Varint).int32(message.lastModified);
+        /* optional string url = 7; */
         if (message.url !== undefined)
-            writer.tag(6, WireType.LengthDelimited).string(message.url);
+            writer.tag(7, WireType.LengthDelimited).string(message.url);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
