@@ -1,13 +1,8 @@
-import brands from '../brands/processed_brands.json';
-import { Brand, Brands } from '$lib/proto/brand';
 import { json } from '@sveltejs/kit';
+import { getBrands } from '../brands/+server.js';
 
 export function GET() {
-	const brandsList: Brand[] = Object.values(brands).map((brand): Brand => {
-		const { folder: id, name, modified: lastModified, url, color } = brand;
-		return { id, name, countries: [], searchTerms: [], lastModified, url, colour: color };
-	});
-	const payload: Brands = { brands: brandsList };
+	const payload = getBrands();
 	return json(payload);
 }
 export const prerender = true;
