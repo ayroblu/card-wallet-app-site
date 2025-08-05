@@ -4,8 +4,8 @@ import { json } from '@sveltejs/kit';
 
 export function GET() {
 	const brandsList: Brand[] = Object.values(brands).map((brand): Brand => {
-		const { folder: id, name, modified: lastModified, url } = brand;
-		return { id, name, countries: [], searchTerms: [], lastModified, url };
+		const { folder: id, name, modified: lastModified, url, color } = brand;
+		return { id, name, countries: [], searchTerms: [], lastModified, url, colour: color };
 	});
 	const payload: Brands = { brands: brandsList };
 	return json(payload);
